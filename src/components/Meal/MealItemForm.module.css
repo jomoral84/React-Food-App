@@ -1,6 +1,5 @@
 .form {
-    display: auto;
-    justify-content: flex-end;
+    justify-content: right;
     text-align: right;
 }
 
