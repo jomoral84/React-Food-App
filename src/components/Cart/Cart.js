@@ -1,28 +1,52 @@
-import React from 'react';
+import React , { useContext } from 'react';
 import classes from './Cart.module.css';
 import Modal from '../UI/Modal';
+import CartContext from '../../store/cart-context';
+import CartItem from './CartItem';
 
 
 const Cart = (props) => {
+
+    const cartCtx = useContext(CartContext);
+
+  //  const totalAmount = `$${cartCtx.totalAmount.toFixed(2)}`;     // Expresion Javascript para expresiones decimales
+    
+    const hasItems = cartCtx.items.length > 0;
+
+    const cartItemRemoveHandler = (id) => {
+
+    }
+
+    const cartItemAddhandler = (item) => {
+
+    }
+
  
      const cartItems = <ul className={classes['cart-items']}> 
-        {[{id:'c1', name:'sushi', amount: 2, price: 12.99}, ].map((item) =><li>{item.name}</li>)} </ul>;
+        {cartCtx.items.map((item) => <CartItem 
+        key={item.id} 
+        name={item.name} 
+        amount={item.amount} 
+        price={item.price} 
+        onRemove={cartItemRemoveHandler.bind(null, item.id)} 
+        onAdd={cartItemAddhandler.bind(null, item)}></CartItem>)} </ul>;
 
 
     return (
          <Modal onClose={props.onClose}>
             {cartItems}
             <div className={classes.total}>
-                <span>Total</span>
-                <span>100</span>
+                <span>Valor Total</span>
+                <span>200</span>
+      
             </div>
             <div className={classes.actions}>
                  <button className={classes['button--alt']} onClick={props.onClose}>Cerrar</button>
-                 <button className={classes.button}>Ordenar</button>
+                {hasItems &&  < button className={classes.button}>Ordenar</button> }  
 
             </div>
             </Modal>
     )
 }
 
-export default Cart
+export default Cart;
