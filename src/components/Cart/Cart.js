@@ -1,4 +1,4 @@
-import React , { useContext } from 'react';
+import { useContext } from 'react';
 import classes from './Cart.module.css';
 import Modal from '../UI/Modal';
 import CartContext from '../../store/cart-context';
@@ -9,16 +9,16 @@ const Cart = (props) => {
 
     const cartCtx = useContext(CartContext);
 
-  //  const totalAmount = `$${cartCtx.totalAmount.toFixed(2)}`;     // Expresion Javascript para expresiones decimales
+   const totalAmount = cartCtx.totalAmount.toFixed(2);     // Expresion Javascript para expresiones decimales 
     
     const hasItems = cartCtx.items.length > 0;
 
     const cartItemRemoveHandler = (id) => {
-
+             cartCtx.removeItem(id);
     }
 
     const cartItemAddhandler = (item) => {
-
+       cartCtx.addItem({...item, amount: 1});
     }
 
  
@@ -37,7 +37,7 @@ const Cart = (props) => {
             {cartItems}
             <div className={classes.total}>
                 <span>Valor Total</span>
-                <span>200</span>
+                <span>0</span>
       
             </div>
             <div className={classes.actions}>
