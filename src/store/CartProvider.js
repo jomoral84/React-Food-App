@@ -16,7 +16,7 @@ const cartReducer = (state, action) => {
 
         const updatedTotalAmount = state.totalAmount + action.item.price * action.item.amount;
 
-        const existingCartItemsIndex = state.items.findIndex(item => item.id === action.item.id);
+        const existingCartItemsIndex = state.items.findIndex((item) => item.id === action.item.id);
 
         const existingCartItem = state.items[existingCartItemsIndex];
 
@@ -25,8 +25,8 @@ const cartReducer = (state, action) => {
         if (existingCartItem) { // Si existen items en el carrito
             const updatedItem = {
                 ...existingCartItem,
-                amount: existingCartItem.amount + action.item.amount
-            }
+                amount: existingCartItem.amount + action.item.amount,
+            };
 
             updatedItems = [...state.items];
             updatedItems[existingCartItemsIndex] = updatedItem;
@@ -38,7 +38,7 @@ const cartReducer = (state, action) => {
 
         return {
             items: updatedItems,
-            amount: updatedTotalAmount,
+            totalAmount: updatedTotalAmount,      // Antes era amount: updatedTotalAmount y generaba un error
         }
     }
 
