@@ -9,27 +9,27 @@ const Cart = (props) => {
 
     const cartCtx = useContext(CartContext);
 
-   const totalAmount = cartCtx.totalAmount.toFixed(2);     // Expresion Javascript para expresiones decimales 
+   const totalAmount =  `$${cartCtx.totalAmount.toFixed(2)}`;     // Expresion Javascript para expresiones decimales 
     
     const hasItems = cartCtx.items.length > 0;
 
     const cartItemRemoveHandler = (id) => {
              cartCtx.removeItem(id);
-    }
+    };
 
     const cartItemAddhandler = (item) => {
        cartCtx.addItem({...item, amount: 1});
-    }
+    };
 
  
-     const cartItems = <ul className={classes['cart-items']}> 
+     const cartItems = (<ul className={classes['cart-items']}> 
         {cartCtx.items.map((item) => <CartItem 
         key={item.id} 
         name={item.name} 
         amount={item.amount} 
         price={item.price} 
         onRemove={cartItemRemoveHandler.bind(null, item.id)} 
-        onAdd={cartItemAddhandler.bind(null, item)}></CartItem>)} </ul>;
+        onAdd={cartItemAddhandler.bind(null, item)}></CartItem>)} </ul> );
 
 
     return (
@@ -37,7 +37,7 @@ const Cart = (props) => {
             {cartItems}
             <div className={classes.total}>
                 <span>Valor Total</span>
-                <span>0</span>
+                <span>{totalAmount}</span>
       
             </div>
             <div className={classes.actions}>
@@ -47,6 +47,6 @@ const Cart = (props) => {
             </div>
             </Modal>
     )
-}
+};
 
 export default Cart;

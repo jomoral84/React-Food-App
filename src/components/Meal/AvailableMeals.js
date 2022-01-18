@@ -15,7 +15,7 @@ const DUMMY_MEALS = [
       id: 'm2',
       name: 'Schnitzel',
       description: 'A german specialty!',
-      price: 16.5,
+      price: 16.55,
     },
     {
       id: 'm3',
@@ -29,6 +29,14 @@ const DUMMY_MEALS = [
       description: 'Healthy...and green...',
       price: 18.99,
     },
+    {
+      id: 'm5',
+      name: 'Ensalada ',
+      description: 'Healthy',
+      price: 20.99,
+    },
+
+
   ];
 
 
